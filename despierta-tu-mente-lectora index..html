@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Despierta Tu Mente Lectora – El Sistema que Convierte la Lectura en Disciplina Real</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Lato:wght@300;400;700&family=Dancing+Script:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blush:       #F9E8E4;
+    --blush-mid:   #F2D0C8;
+    --blush-deep:  #E8B5AB;
+    --petal:       #D9897C;
+    --kraft:       #F0E8D8;
+    --kraft-mid:   #E6D9C4;
+    --kraft-deep:  #C9B89A;
+    --brown:       #7B4F34;
+    --brown-dark:  #4A2C1A;
+    --brown-light: #A07050;
+    --ink:         #2A1810;
+    --warm-text:   #6B4535;
+    --off-white:   #FDF8F4;
+    --dark-section:#2A1810;
+    --dark2:       #1C0E08;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--off-white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  section { padding: 96px 20px; }
+  .container { max-width: 1080px; margin: 0 auto; }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--petal);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 5vw, 50px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--brown-dark);
+    margin-bottom: 18px;
+  }
+
+  .section-desc {
+    font-size: 17px;
+    color: var(--warm-text);
+    line-height: 1.75;
+    font-weight: 300;
+    max-width: 620px;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: linear-gradient(135deg, var(--brown) 0%, var(--petal) 100%);
+    color: var(--off-white);
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    padding: 18px 44px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    animation: pulseCTA 2.8s ease-in-out infinite;
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, transparent 30%, rgba(255,255,255,0.2) 60%, transparent 100%);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .btn-primary:hover::after { transform: translateX(100%); }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(123,79,52,0.35); }
+
+  @keyframes pulseCTA {
+    0%,100% { box-shadow: 0 0 0 0 rgba(217,137,124,0.5), 0 6px 28px rgba(123,79,52,0.25); }
+    50%      { box-shadow: 0 0 0 10px rgba(217,137,124,0), 0 6px 28px rgba(123,79,52,0.4); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(36px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ─ STICKY ─ */
+  .sticky-urgency {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--brown-dark);
+    color: var(--blush);
+    text-align: center;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    border-top: 2px solid var(--petal);
+  }
+  .sticky-urgency a {
+    background: var(--petal);
+    color: white;
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 13px;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+  .sticky-urgency a:hover { background: var(--brown); }
+
+  /* ─ HERO ─ */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(155deg, var(--blush) 0%, var(--blush-mid) 45%, #EDD5CC 100%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 90px 20px 70px;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 12% 20%, rgba(255,255,255,0.5) 0%, transparent 30%),
+      radial-gradient(circle at 88% 75%, rgba(255,255,255,0.35) 0%, transparent 25%);
+    pointer-events: none;
+  }
+
+  .float-petal {
+    position: absolute;
+    border-radius: 50% 40% 60% 30% / 40% 60% 30% 50%;
+    pointer-events: none;
+    opacity: 0.18;
+    animation: petalDrift linear infinite;
+  }
+  .float-petal:nth-child(1) { width:280px; height:280px; background:var(--blush-deep); top:-60px; right:-60px; animation-duration:20s; }
+  .float-petal:nth-child(2) { width:180px; height:180px; background:var(--brown-light); bottom:8%; left:-50px; animation-duration:25s; animation-delay:-7s; border-radius:60% 40%; opacity:0.12; }
+  .float-petal:nth-child(3) { width:120px; height:120px; background:var(--petal); top:40%; right:8%; animation-duration:16s; animation-delay:-3s; opacity:0.15; }
+
+  @keyframes petalDrift {
+    0%   { transform: translateY(0) rotate(0deg) scale(1); }
+    33%  { transform: translateY(-25px) rotate(120deg) scale(1.05); }
+    66%  { transform: translateY(18px) rotate(240deg) scale(0.96); }
+    100% { transform: translateY(0) rotate(360deg) scale(1); }
+  }
+
+  .hero-ornament { font-size: 28px; opacity: 0.5; margin-bottom: 4px; animation: fadeDown 0.7s ease both; }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.55);
+    border: 1px solid rgba(217,137,124,0.5);
+    color: var(--brown);
+    padding: 7px 20px;
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    animation: fadeDown 0.8s ease 0.05s both;
+    backdrop-filter: blur(6px);
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 7.5vw, 86px);
+    font-weight: 700;
+    color: var(--brown-dark);
+    line-height: 1.05;
+    max-width: 780px;
+    margin-bottom: 10px;
+    animation: fadeDown 0.9s ease 0.1s both;
+  }
+
+  .hero-title .script-word {
+    font-family: 'Dancing Script', cursive;
+    color: var(--petal);
+    font-weight: 600;
+    font-size: 1.1em;
+  }
+
+  .hero-subtitle {
+    font-size: clamp(16px, 2.2vw, 20px);
+    color: var(--warm-text);
+    max-width: 580px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    font-weight: 300;
+    animation: fadeDown 1s ease 0.18s both;
+  }
+
+  .hero-cta-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 56px;
+    animation: fadeDown 1.1s ease 0.26s both;
+  }
+
+  .hero-trust { font-size: 12px; color: var(--warm-text); display: flex; align-items: center; gap: 6px; opacity: 0.8; }
+
+  .hero-mockup { width: 100%; max-width: 640px; animation: fadeUp 1.2s ease 0.35s both; }
+  .hero-mockup img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 16px 60px rgba(74,44,26,0.22), 0 0 0 1px rgba(217,137,124,0.25);
+  }
+
+  /* ─ STATS ─ */
+  .stats-bar { background: var(--brown); padding: 44px 20px; }
+  .stats-inner { max-width: 880px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 48px; }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 56px; font-weight: 700; color: var(--blush); line-height: 1; display: block; }
+  .stat-label { font-size: 12px; color: rgba(249,232,228,0.65); font-weight: 400; letter-spacing: 0.5px; margin-top: 4px; }
+
+  /* ─ PROBLEMS ─ */
+  .problems { background: var(--kraft); position: relative; overflow: hidden; }
+  .problems::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(circle at 90% 10%, rgba(255,255,255,0.5) 0%, transparent 40%);
+    pointer-events: none;
+  }
+
+  .problems-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 56px;
+  }
+
+  .problem-card {
+    background: var(--off-white);
+    border-radius: 20px;
+    padding: 28px;
+    border: 1px solid rgba(201,184,154,0.6);
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  @media (max-width: 768px) {
+    .problems-grid { grid-template-columns: repeat(2, 1fr); }
+    .problem-card { aspect-ratio: 1 / 1; }
+  }
+
+  @media (max-width: 480px) {
+    .problems-grid { grid-template-columns: 1fr; }
+    .problem-card { aspect-ratio: unset; }
+  }
+  .problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--blush-deep), var(--petal));
+    border-radius: 3px 3px 0 0;
+  }
+  .problem-card:hover { transform: translateY(-6px); box-shadow: 0 18px 50px rgba(74,44,26,0.1); }
+  .problem-icon { font-size: 34px; margin-bottom: 14px; }
+  .problem-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 700; color: var(--brown-dark); margin-bottom: 10px; }
+  .problem-card p { font-size: 14px; color: var(--warm-text); line-height: 1.65; }
+
+  /* ─ BENEFITS ─ */
+  .benefits { background: var(--off-white); }
+  .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; margin-top: 56px; }
+
+  .benefit-item {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 28px 24px;
+    background: var(--blush);
+    border-radius: 20px;
+    border: 1px solid rgba(232,181,171,0.5);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .benefit-item:hover { transform: translateY(-5px); box-shadow: 0 16px 44px rgba(217,137,124,0.2); }
+
+  .benefit-icon-wrap {
+    width: 50px; height: 50px;
+    background: linear-gradient(135deg, var(--brown) 0%, var(--petal) 100%);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    flex-shrink: 0;
+    box-shadow: 0 4px 16px rgba(123,79,52,0.25);
+  }
+  .benefit-item h3 { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 700; color: var(--brown-dark); margin-bottom: 7px; }
+  .benefit-item p { font-size: 14px; color: var(--warm-text); line-height: 1.65; }
+
+  /* ─ WHAT'S INSIDE DARK ─ */
+  .whats-inside {
+    background: var(--dark-section);
+    color: var(--blush);
+    position: relative;
+    overflow: hidden;
+  }
+  .whats-inside::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 20% 30%, rgba(249,232,228,0.06) 0%, transparent 60%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(217,137,124,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .whats-inside .section-title { color: var(--blush); }
+  .whats-inside .section-desc  { color: rgba(249,232,228,0.6); }
+  .whats-inside .section-label { color: var(--blush-deep); }
+
+  .video-placeholder {
+    width: 100%; max-width: 680px; margin: 48px auto;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(232,181,171,0.25);
+    border-radius: 20px;
+    aspect-ratio: 16/9;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+    cursor: pointer;
+    transition: border-color 0.3s, background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .video-placeholder:hover { border-color: var(--blush-deep); background: rgba(255,255,255,0.07); }
+
+  .play-btn {
+    width: 72px; height: 72px;
+    background: linear-gradient(135deg, var(--brown), var(--petal));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; color: white;
+    transition: transform 0.3s;
+    box-shadow: 0 6px 24px rgba(217,137,124,0.4);
+  }
+  .video-placeholder:hover .play-btn { transform: scale(1.12); }
+  .video-placeholder p { color: rgba(249,232,228,0.45); font-size: 14px; }
+
+  .modules-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 16px; }
+
+  .module-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(232,181,171,0.15);
+    border-radius: 18px;
+    padding: 28px 24px;
+    position: relative; overflow: hidden;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .module-card:hover { background: rgba(249,232,228,0.09); transform: translateY(-4px); }
+  .module-num { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 700; color: rgba(232,181,171,0.15); position: absolute; top: 8px; right: 16px; line-height: 1; }
+  .module-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 18px; color: var(--blush); font-weight: 700; margin-bottom: 10px; }
+  .module-card p { font-size: 13px; color: rgba(249,232,228,0.5); line-height: 1.65; }
+  .module-img { margin-top: 18px; border-radius: 10px; overflow: hidden; border: 1px solid rgba(232,181,171,0.12); }
+  .module-img img { width: 100%; display: block; }
+
+  .trust-badges { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 60px; }
+  .trust-badge { display: flex; align-items: center; gap: 8px; padding: 10px 18px; background: rgba(255,255,255,0.05); border: 1px solid rgba(232,181,171,0.2); border-radius: 8px; color: rgba(249,232,228,0.55); font-size: 13px; }
+
+  /* ─ URGENCY STRIP ─ */
+  .urgency-strip { background: var(--petal); text-align: center; padding: 14px 20px; font-weight: 700; color: white; font-size: 15px; }
+
+  /* ─ BONUSES ─ */
+  .bonuses { background: var(--kraft-mid); }
+  .bonus-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; margin-top: 56px; }
+  @media (max-width: 640px) { .bonus-grid { grid-template-columns: 1fr; } }
+
+  .bonus-card { background: var(--off-white); border-radius: 22px; overflow: hidden; border: 1px solid rgba(201,184,154,0.7); transition: transform 0.3s, box-shadow 0.3s; }
+  .bonus-card:hover { transform: translateY(-7px); box-shadow: 0 24px 60px rgba(74,44,26,0.14); }
+
+  .bonus-header { background: linear-gradient(135deg, var(--brown-dark), var(--brown)); padding: 30px 28px; position: relative; overflow: hidden; }
+  .bonus-header::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 100% 0%, rgba(249,232,228,0.08) 0%, transparent 60%); pointer-events: none; }
+
+  .bonus-badge { display: inline-flex; align-items: center; gap: 5px; background: var(--blush-deep); color: var(--brown-dark); font-size: 10px; font-weight: 700; padding: 4px 12px; border-radius: 100px; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px; }
+  .bonus-header h3 { font-family: 'Cormorant Garamond', serif; font-size: 24px; color: var(--blush); font-weight: 700; }
+  .bonus-header .bonus-value { margin-top: 8px; color: rgba(249,232,228,0.6); font-size: 13px; }
+
+  .bonus-body { padding: 26px 28px; }
+  .bonus-body p { font-size: 15px; color: var(--warm-text); line-height: 1.65; margin-bottom: 20px; }
+  .bonus-img { border-radius: 12px; overflow: hidden; border: 1px solid rgba(201,184,154,0.4); }
+  .bonus-img img { width: 100%; display: block; }
+
+  /* ─ TESTIMONIALS ─ */
+  .testimonials { background: var(--blush); }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 22px; margin-top: 56px; }
+
+  .testimonial-card { background: var(--off-white); border-radius: 22px; padding: 32px 26px 28px; border: 1px solid rgba(232,181,171,0.4); position: relative; transition: transform 0.3s, box-shadow 0.3s; }
+  .testimonial-card:hover { transform: translateY(-5px); box-shadow: 0 18px 50px rgba(217,137,124,0.18); }
+  .quote-mark { font-family: 'Cormorant Garamond', serif; font-size: 90px; color: var(--blush-deep); opacity: 0.5; position: absolute; top: 4px; left: 18px; line-height: 1; font-style: italic; }
+  .stars { color: var(--petal); font-size: 15px; margin-bottom: 6px; }
+  .testimonial-text { font-size: 14px; line-height: 1.75; color: var(--warm-text); margin-bottom: 22px; position: relative; padding-top: 18px; }
+  .testimonial-author { display: flex; align-items: center; gap: 12px; }
+  .author-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, var(--brown), var(--petal)); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 15px; flex-shrink: 0; }
+  .author-info strong { display: block; font-size: 14px; color: var(--brown-dark); }
+  .author-info span { font-size: 12px; color: var(--warm-text); }
+
+  /* ─ OFFER ─ */
+  .offer { background: var(--kraft); }
+  .offer-box { background: var(--off-white); border-radius: 28px; padding: 56px 44px; border: 1px solid rgba(201,184,154,0.7); box-shadow: 0 30px 80px rgba(74,44,26,0.1); max-width: 740px; margin: 48px auto 0; text-align: center; }
+  .offer-product-img { width: 100%; max-width: 340px; margin: 0 auto 40px; border-radius: 18px; overflow: hidden; box-shadow: 0 20px 50px rgba(74,44,26,0.2); }
+  .offer-product-img img { width: 100%; display: block; }
+
+  .value-stack { text-align: left; margin-bottom: 32px; }
+  .value-row { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; border-bottom: 1px solid rgba(201,184,154,0.3); font-size: 15px; gap: 12px; }
+  .value-row:last-child { border-bottom: none; }
+  .value-row span:first-child { color: var(--warm-text); }
+  .orig-price { color: var(--kraft-deep); text-decoration: line-through; white-space: nowrap; }
+  .value-row.total { font-weight: 700; font-size: 17px; color: var(--brown); }
+
+  .discount-badge { display: inline-block; background: var(--petal); color: white; font-weight: 700; font-size: 13px; padding: 6px 18px; border-radius: 100px; margin-bottom: 14px; }
+
+  .price-display { background: var(--brown-dark); border-radius: 18px; padding: 32px 24px; margin: 24px 0; position: relative; overflow: hidden; }
+  .price-display::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 0%, rgba(249,232,228,0.1) 0%, transparent 60%); }
+  .price-was { color: rgba(249,232,228,0.4); font-size: 16px; text-decoration: line-through; margin-bottom: 4px; }
+  .price-now { font-family: 'Cormorant Garamond', serif; font-size: 80px; font-weight: 700; color: var(--blush); line-height: 1; }
+  .price-note { color: rgba(249,232,228,0.5); font-size: 13px; margin-top: 8px; }
+
+  /* ─ GUARANTEE DARK ─ */
+  .guarantee { background: var(--dark2); text-align: center; color: var(--blush); position: relative; overflow: hidden; }
+  .guarantee::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(217,137,124,0.1) 0%, transparent 65%); pointer-events: none; }
+  .guarantee .section-title { color: var(--blush); }
+  .guarantee-box { max-width: 620px; margin: 0 auto; position: relative; }
+
+  .guarantee-seal {
+    width: 130px; height: 130px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--brown), var(--petal));
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    margin: 0 auto 36px;
+    color: white;
+    animation: sealPulse 3s ease-in-out infinite;
+  }
+  @keyframes sealPulse {
+    0%,100% { box-shadow: 0 0 0 8px rgba(217,137,124,0.18), 0 0 0 16px rgba(217,137,124,0.08), 0 12px 40px rgba(0,0,0,0.3); }
+    50%      { box-shadow: 0 0 0 12px rgba(217,137,124,0.22), 0 0 0 24px rgba(217,137,124,0.05), 0 12px 40px rgba(0,0,0,0.35); }
+  }
+  .guarantee-seal .days { font-family: 'Cormorant Garamond', serif; font-size: 46px; font-weight: 700; line-height: 1; }
+  .guarantee-seal .days-label { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: -2px; opacity: 0.85; }
+  .guarantee-text { font-size: 17px; color: rgba(249,232,228,0.68); line-height: 1.75; margin-bottom: 18px; }
+
+  /* ─ FAQ ─ */
+  .faq { background: var(--kraft); }
+  .faq-list { max-width: 740px; margin: 56px auto 0; }
+  .faq-item { border-bottom: 1px solid rgba(201,184,154,0.45); }
+  .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 22px 0; font-family: 'Lato', sans-serif; font-size: 16px; font-weight: 700; color: var(--brown-dark); cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; transition: color 0.3s; }
+  .faq-question:hover { color: var(--petal); }
+  .faq-icon { width: 28px; height: 28px; border-radius: 50%; background: var(--blush-mid); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; color: var(--petal); transition: background 0.3s, transform 0.4s, color 0.3s; }
+  .faq-item.open .faq-icon { background: var(--petal); color: white; transform: rotate(45deg); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(0,1,0,1); }
+  .faq-item.open .faq-answer { max-height: 400px; transition: max-height 0.5s cubic-bezier(0.9,0,0.8,1); }
+  .faq-answer p { padding-bottom: 22px; font-size: 15px; color: var(--warm-text); line-height: 1.72; }
+
+  /* ─ FINAL CTA ─ */
+  .final-cta {
+    background: linear-gradient(160deg, var(--blush) 0%, var(--blush-mid) 100%);
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .final-cta::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(255,255,255,0.4) 0%, transparent 65%); }
+  .final-cta .section-title { max-width: 600px; margin: 0 auto 18px; position: relative; }
+  .final-cta .section-desc { margin: 0 auto 48px; position: relative; }
+
+  /* ─ FOOTER ─ */
+  footer { background: var(--dark2); padding: 44px 20px; border-top: 1px solid rgba(217,137,124,0.12); }
+  .footer-inner { max-width: 800px; margin: 0 auto; text-align: center; }
+  .footer-logo { font-family: 'Dancing Script', cursive; font-size: 24px; color: var(--blush-deep); margin-bottom: 18px; display: block; }
+  .footer-disclaimer { font-size: 11px; color: rgba(249,232,228,0.28); line-height: 1.75; }
+
+  @media (max-width: 640px) {
+    section { padding: 70px 16px; }
+    .offer-box { padding: 30px 18px; }
+    .price-now { font-size: 60px; }
+    .sticky-urgency { font-size: 12px; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sticky-urgency">
+  🌸 Oferta especial — Solo <strong>$4 USD</strong> · Acceso inmediato
+  <a href="https://pay.hotmart.com/E104723238U" target="_blank">Lo quiero ahora</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="inicio">
+  <div class="float-petal"></div>
+  <div class="float-petal"></div>
+  <div class="float-petal"></div>
+
+  <div class="hero-ornament">🌿 ✦ 🌸</div>
+  <div class="hero-badge">✦ Sistema de Disciplina Lectora</div>
+
+  <h1 class="hero-title">
+    Deja de empezar libros.<br>
+    Empieza a <span class="script-word">terminarlos.</span>
+  </h1>
+
+  <p class="hero-subtitle">
+    El book journal que convierte tu caos lector en disciplina real — con seguimiento visual, retos motivadores y la identidad de alguien que sí cumple lo que se propone.
+  </p>
+
+  <div class="hero-cta-wrap">
+    <a href="https://pay.hotmart.com/E104723238U" target="_blank" class="btn-primary">📖 Sí, quiero mi Book Journal — $4 USD</a>
+    <span class="hero-trust">🔒 Pago seguro · Acceso inmediato · Garantía 8 días</span>
+  </div>
+
+  <div class="hero-mockup">
+    <img src="https://i.imgur.com/M7HtXuR.png" alt="Mockup del producto" style="width:100%; border-radius:20px; box-shadow: 0 16px 60px rgba(74,44,26,0.22), 0 0 0 1px rgba(217,137,124,0.25);">
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><span class="stat-num">60+</span><div class="stat-label">Slots de seguimiento de libros</div></div>
+    <div class="stat-item reveal reveal-delay-1"><span class="stat-num">12</span><div class="stat-label">Secciones del sistema lector</div></div>
+    <div class="stat-item reveal reveal-delay-2"><span class="stat-num">20+</span><div class="stat-label">Libros al año — tu nueva realidad</div></div>
+    <div class="stat-item reveal reveal-delay-3"><span class="stat-num">8</span><div class="stat-label">Días de garantía sin riesgo</div></div>
+  </div>
+</div>
+
+<!-- PROBLEMAS -->
+<section class="problems" id="problemas">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:660px; margin:0 auto;">
+      <span class="section-label">El problema real</span>
+      <h2 class="section-title">¿Te suena familiar alguna de estas situaciones?</h2>
+      <p class="section-desc" style="margin:0 auto;">No es falta de tiempo. Es falta de sistema, identidad débil y ausencia de seguimiento visible.</p>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="problem-icon">📚</div>
+        <h3>Empiezas libros con energía y los abandonas</h3>
+        <p>La motivación inicial dura días. El libro termina en el cajón con un marcador en la página 47, llenándote de culpa.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="problem-icon">⏳</div>
+        <h3>Sientes que "no tienes tiempo" para leer</h3>
+        <p>Tienes tiempo para el scroll interminable, pero cuando se trata de leer, el tiempo desaparece misteriosamente.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-3">
+        <div class="problem-icon">💔</div>
+        <h3>Te llena de culpa no terminar lo que empiezas</h3>
+        <p>Cada libro sin terminar se convierte en una prueba silenciosa de que "eres de las que no completan las cosas".</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-1">
+        <div class="problem-icon">🌀</div>
+        <h3>Llevas meses queriendo ser más disciplinada</h3>
+        <p>Tienes el deseo, la intención y los libros en el estante. Pero sin sistema, el deseo no se convierte en hábito.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-2">
+        <div class="problem-icon">🧠</div>
+        <h3>Lees, pero no recuerdas ni aplicas lo que lees</h3>
+        <p>Terminas un libro y en dos semanas no recuerdas nada. Como si el tiempo y la energía se hubieran ido al vacío.</p>
+      </div>
+      <div class="problem-card reveal reveal-delay-3">
+        <div class="problem-icon">📉</div>
+        <h3>Sin ver tu progreso, la motivación se evapora</h3>
+        <p>La motivación vive del progreso visible. Sin un tracker, no sabes si estás avanzando o repitiendo el mismo ciclo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICIOS -->
+<section class="benefits" id="beneficios">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:660px; margin:0 auto 56px;">
+      <span class="section-label">La transformación</span>
+      <h2 class="section-title">Lo que lograrás con <em style="font-family:'Dancing Script',cursive; color:var(--petal);">Despierta Tu Mente Lectora</em></h2>
+      <p class="section-desc" style="margin:0 auto;">Un sistema completo para pasar de la inconsistencia a la disciplina — con seguimiento real, identidad nueva y resultados visibles.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-item reveal reveal-delay-1">
+        <div class="benefit-icon-wrap">✅</div>
+        <div><h3>Hábito lector real y sostenible</h3><p>Un sistema que funciona incluso los días que no tienes ganas, sin depender de motivación.</p></div>
+      </div>
+      <div class="benefit-item reveal reveal-delay-2">
+        <div class="benefit-icon-wrap">📖</div>
+        <div><h3>Lee 20+ libros al año</h3><p>Con el reto de 60 libros y el tracker mensual, tendrás un mapa claro de adónde vas y cuánto has avanzado.</p></div>
+      </div>
+      <div class="benefit-item reveal reveal-delay-3">
+        <div class="benefit-icon-wrap">🎯</div>
+        <div><h3>Seguimiento visual que motiva de verdad</h3><p>Ver tu progreso marcado día a día genera más motivación que cualquier frase inspiracional.</p></div>
+      </div>
+      <div class="benefit-item reveal reveal-delay-1">
+        <div class="benefit-icon-wrap">🧘</div>
+        <div><h3>Menos dispersión, más enfoque</h3><p>Con un sistema definido, tu mente deja de preguntarse "qué leo" y se enfoca en disfrutar cada página.</p></div>
+      </div>
+      <div class="benefit-item reveal reveal-delay-2">
+        <div class="benefit-icon-wrap">💡</div>
+        <div><h3>Recuerda y aplica lo que lees</h3><p>Las secciones de reseñas y frases favoritas hacen que cada libro quede grabado en tu memoria.</p></div>
+      </div>
+      <div class="benefit-item reveal reveal-delay-3">
+        <div class="benefit-icon-wrap">👑</div>
+        <div><h3>Construye tu identidad lectora</h3><p>Cada libro completado refuerza quién eres. No es solo leer más — es convertirte en alguien disciplinada.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="urgency-strip">🌸 Oferta por tiempo limitado · Solo <strong>$4 USD</strong> · Acceso inmediato a todo el sistema</div>
+
+<!-- QUÉ INCLUYE -->
+<section class="whats-inside" id="contenido">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:680px; margin:0 auto;">
+      <span class="section-label">Contenido completo</span>
+      <h2 class="section-title">¿Qué contiene el Book Journal?</h2>
+      <p class="section-desc">Un sistema completo diseñado por una lectora apasionada, para quienes sienten que los libros no solo se leen… se viven.</p>
+    </div>
+
+    <div class="video-placeholder reveal" style="background:transparent; border:none;">
+      <video
+        src="https://i.imgur.com/3SftNGE.mp4"
+        controls
+        style="width:100%; max-width:680px; border-radius:20px; display:block; margin:48px auto; box-shadow: 0 16px 60px rgba(0,0,0,0.4);"
+      ></video>
+    </div>
+
+    <div class="modules-grid">
+      <div class="module-card reveal reveal-delay-1">
+        <div class="module-num">01</div>
+        <h3>Bienvenida & Mis Metas de Lectura</h3>
+        <p>Define tu propósito real, establece metas claras y elige los géneros que vas a explorar este período.</p>
+        <div class="module-img"><img src="https://i.imgur.com/RkS7Xs4.png" alt="Módulo 1"></div>
+      </div>
+      <div class="module-card reveal reveal-delay-2">
+        <div class="module-num">02</div>
+        <h3>Wishlist & Mi Estantería Virtual</h3>
+        <p>Organiza todos los libros que quieres leer y visualiza tu estantería en constante crecimiento.</p>
+        <div class="module-img"><img src="https://i.imgur.com/GNRZMUX.png" alt="Módulo 2"></div>
+      </div>
+      <div class="module-card reveal reveal-delay-3">
+        <div class="module-num">03</div>
+        <h3>Tracker Mensual de Lectura</h3>
+        <p>Marca cada día que lees durante todo el año. 12 meses de constancia visualizada y motivadora.</p>
+        <div class="module-img"><img src="https://i.imgur.com/1MaiuJQ.jpeg" alt="Módulo 3"></div>
+      </div>
+      <div class="module-card reveal reveal-delay-1">
+        <div class="module-num">04</div>
+        <h3>Reto 60 Libros + Book Challenge</h3>
+        <p>El sistema de disciplina central: comprométete con el reto y visualiza cada libro completado.</p>
+        <div class="module-img"><img src="https://i.imgur.com/xv2GvP4.jpeg" alt="Módulo 4"></div>
+      </div>
+      <div class="module-card reveal reveal-delay-2">
+        <div class="module-num">05</div>
+        <h3>A-Z Challenge & Book Bingo</h3>
+        <p>Retos gamificados para mantener la emoción viva: lee por letra del alfabeto y completa tu bingo.</p>
+        <div class="module-img"><img src="https://i.imgur.com/ySXmcCl.jpeg" alt="Módulo 5"></div>
+      </div>
+      <div class="module-card reveal reveal-delay-3">
+        <div class="module-num">06</div>
+        <h3>Reseñas Detalladas + Shipeo Literario</h3>
+        <p>Registra cada libro con autor, fechas, géneros, personajes, frases favoritas, clasificación y reseña completa.</p>
+        <div class="module-img"><img src="https://i.imgur.com/OU9SiMD.jpeg" alt="Módulo 6"></div>
+      </div>
+    </div>
+
+    <div class="trust-badges reveal">
+      <div class="trust-badge"><span>📥</span> Descarga inmediata</div>
+      <div class="trust-badge"><span>📱</span> Tablet, móvil y PC</div>
+      <div class="trust-badge"><span>🖨️</span> También imprimible</div>
+      <div class="trust-badge"><span>🔄</span> Reutilizable cada año</div>
+    </div>
+  </div>
+</section>
+
+<!-- BONOS -->
+<section class="bonuses" id="bonos">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:640px; margin:0 auto;">
+      <span class="section-label">Regalos exclusivos</span>
+      <h2 class="section-title">Hoy también recibes estos bonos</h2>
+      <p class="section-desc" style="margin:0 auto;">Gratis, solo por tomar acción hoy. Valorados en $14 USD — son tuyos sin ningún costo adicional.</p>
+    </div>
+    <div class="bonus-grid">
+      <div class="bonus-card reveal reveal-delay-1">
+        <div class="bonus-header">
+          <div class="bonus-badge">🎁 Bono #1 — GRATIS</div>
+          <h3>Portadas en Sticker</h3>
+          <p class="bonus-value">Valor real: $7 USD — Tuyo gratis hoy</p>
+        </div>
+        <div class="bonus-body">
+          <p>Una plantilla con 20 portadas de libros distintos y variados para imprimir, recortar y usar como stickers decorativos en tu journal, cuaderno o planner. ¡Perfectos para personalizar tu espacio lector!</p>
+          <div class="bonus-img"><img src="https://i.imgur.com/HijrxiU.png" alt="Bono 1"></div>
+        </div>
+      </div>
+      <div class="bonus-card reveal reveal-delay-2">
+        <div class="bonus-header">
+          <div class="bonus-badge">🎁 Bono #2 — GRATIS</div>
+          <h3>Separadores de Libros</h3>
+          <p class="bonus-value">Valor real: $7 USD — Tuyo gratis hoy</p>
+        </div>
+        <div class="bonus-body">
+          <p>Hermosos separadores de libros diseñados para imprimir en el papel que prefieras y plastificar. Perfectos para leer en físico con estilo y ese toque bookish que tanto amamos.</p>
+          <div class="bonus-img"><img src="https://i.imgur.com/0IeZjwx.png" alt="Bono 2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIOS -->
+<section class="testimonials" id="testimonios">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:640px; margin:0 auto;">
+      <span class="section-label">Lo que dicen quienes ya lo tienen</span>
+      <h2 class="section-title">Lectoras reales, resultados reales</h2>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Llevaba dos años prometiéndome "este año sí leo más" y nunca pasaba nada. Con este journal, por primera vez en mi vida terminé 6 libros en 3 meses. El tracker mensual es lo que necesitaba para no abandonar.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">V</div>
+          <div class="author-info"><strong>Valentina M.</strong><span>Diseñadora, 26 años · Medellín</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Me encantó que no es solo "lleva registro de lo que lees". Te ayuda a construir una identidad lectora. Desde que empecé el reto de 60 libros me siento diferente. Ya soy una persona disciplinada.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S</div>
+          <div class="author-info"><strong>Sofía R.</strong><span>Universitaria, 22 años · Bogotá</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Soy muy visual y necesitaba algo que me permitiera ver mi progreso. El Book Bingo y el A-Z Challenge me tienen emocionada cada semana. Lo recomiendo a cualquiera que quiera ser más constante.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info"><strong>Andrea P.</strong><span>Emprendedora, 30 años · Buenos Aires</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Nunca pensé que $7 pudieran cambiar mi relación con los libros. Las secciones de reseñas me hacen conectar mucho más con cada lectura. Ahora recuerdo lo que leo y puedo hablarlo con soltura.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">C</div>
+          <div class="author-info"><strong>Camila L.</strong><span>Profesora, 34 años · Santiago de Chile</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Los separadores y las portadas de stickers fueron un bonus inesperado y hermoso. Los imprimí y mis amigas me preguntan dónde los conseguí. Las mando al link sin pensarlo dos veces.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">D</div>
+          <div class="author-info"><strong>Daniela G.</strong><span>Lectora bookish, 28 años · México DF</span></div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-3">
+        <div class="quote-mark">"</div>
+        <div class="stars">★★★★★</div>
+        <p class="testimonial-text">Llevo 14 libros este año y estamos apenas en julio. Mi autoestima mejoró porque por fin cumplo las metas que me propongo. La disciplina se construye con sistema, no con fuerza de voluntad.</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">M</div>
+          <div class="author-info"><strong>Mariana T.</strong><span>Contadora, 35 años · Lima</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OFERTA -->
+<section class="offer" id="oferta">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:640px; margin:0 auto;">
+      <span class="section-label">Tu inversión completa hoy</span>
+      <h2 class="section-title">Todo lo que obtienes por solo $4 USD</h2>
+    </div>
+    <div class="offer-box reveal">
+      <div class="offer-product-img">
+        <img src="https://i.imgur.com/cadZoTd.png" alt="Producto principal centrado">
+      </div>
+      <div class="value-stack">
+        <div class="value-row"><span>📔 Book Journal Estratégico <em>Despierta Tu Mente Lectora</em></span><span class="orig-price">$20 USD</span></div>
+        <div class="value-row"><span>🎁 Bono #1: 20 Portadas en Sticker</span><span class="orig-price">$7 USD</span></div>
+        <div class="value-row"><span>🎁 Bono #2: Separadores de Libros</span><span class="orig-price">$7 USD</span></div>
+        <div class="value-row total"><span>Valor total del paquete</span><span>$34 USD</span></div>
+      </div>
+      <div class="discount-badge">🌸 88% de descuento — Oferta especial de lanzamiento</div>
+      <div class="price-display">
+        <div class="price-was">Antes: $34 USD</div>
+        <div class="price-now">$4 USD</div>
+        <div class="price-note">Pago único · Sin suscripción · Acceso de por vida</div>
+      </div>
+      <a href="https://pay.hotmart.com/E104723238U" target="_blank" class="btn-primary" style="width:100%; justify-content:center; font-size:19px; padding:22px 44px; border-radius:14px;">
+        🌸 Sí, quiero transformar mi hábito lector — $4 USD
+      </a>
+      <p style="margin-top:18px; color:var(--warm-text); font-size:12px; text-align:center;">
+        🔒 Pago 100% seguro · Acceso inmediato por email · Garantía de 8 días sin preguntas
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <div class="reveal" style="text-align:center; max-width:640px; margin:0 auto;">
+      <span class="section-label">Preguntas frecuentes</span>
+      <h2 class="section-title">¿Tienes dudas? Las resolvemos aquí</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal">
+        <button class="faq-question">¿En qué formato está el Book Journal?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Es un archivo PDF digital de alta calidad. Puedes usarlo en tablet, iPad o computadora con apps como GoodNotes, Notability o cualquier lector de PDF. También puedes imprimirlo — el diseño está optimizado para ambos formatos.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question">¿Cómo recibo el producto después de comprar?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>El acceso es inmediato. Recibirás un email con el enlace de descarga a los pocos minutos de completar tu pago. Si no lo encuentras en bandeja principal, revisa tu carpeta de spam o promociones.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question">¿Funciona si ya soy lectora frecuente?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Perfectamente. Si ya lees, este journal potencia tu experiencia con el reto de 60 libros, reseñas detalladas, el tracker mensual y los challenges gamificados. Organizas todo lo que ya haces y llevarás un registro del que estarás muy orgullosa.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question">¿Funciona si leo muy poco o casi no leo?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Especialmente para ti. Este sistema está diseñado para personas que quieren empezar o retomar la lectura. Las metas son flexibles — tú decides cuántos libros quieres leer y el sistema te ayuda a sostenerlo sin presión ni culpa.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <button class="faq-question">¿Cuánto tiempo necesito dedicarle al journal?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Solo los minutos que duren tus sesiones de lectura. No es trabajo extra — es el complemento natural. Anotas mientras lees o al terminar. En menos de 5 minutos al día tienes el registro completo y el seguimiento activo.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-1">
+        <button class="faq-question">¿Puedo imprimirlo?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Sí, el diseño está optimizado para impresión en tamaño carta o A4. Los separadores y portadas (bonos) también están listos para imprimir y plastificar si prefieres la experiencia física.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-2">
+        <button class="faq-question">¿Qué pasa si no me gusta?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Tienes 8 días completos de garantía sin preguntas. Si por cualquier razón sientes que no fue lo que esperabas, escribes al email de soporte y te devuelvo el 100% de tu dinero. Sin formularios, sin excusas, sin complicaciones.</p></div>
+      </div>
+      <div class="faq-item reveal reveal-delay-3">
+        <button class="faq-question">¿Para quién es exactamente este journal?<span class="faq-icon">+</span></button>
+        <div class="faq-answer"><p>Para personas entre 20 y 38 años que quieren ser más disciplinadas, que empiezan libros pero no los terminan, y buscan un sistema claro para convertir la lectura en hábito sostenible. Si quieres construir la identidad de alguien que cumple lo que se propone, este es tu punto de partida.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container" style="position:relative; z-index:1;">
+    <div class="hero-ornament reveal" style="font-size:32px; text-align:center;">🌸 ✦ 🌿</div>
+    <h2 class="section-title reveal" style="max-width:600px; margin:0 auto 16px; text-align:center;">
+      Tu versión disciplinada te está esperando.<br>
+      <span style="font-family:'Dancing Script',cursive; color:var(--petal); font-size:1.15em;">Empieza hoy.</span>
+    </h2>
+    <p class="section-desc reveal reveal-delay-1" style="margin:0 auto 48px; text-align:center;">
+      Por el precio de un café, obtienes el sistema completo que te convertirá en alguien que termina lo que empieza. Sin excusas. Sin más "el lunes empiezo".
+    </p>
+    <div style="text-align:center;" class="reveal reveal-delay-2">
+      <a href="https://pay.hotmart.com/E104723238U" target="_blank" class="btn-primary" style="font-size:19px; padding:22px 52px; border-radius:14px;">
+        🌸 Quiero mi Book Journal ahora — Solo $4 USD
+      </a>
+      <p style="margin-top:18px; color:var(--warm-text); font-size:12px;">
+        🔒 Pago seguro · Acceso inmediato · Garantía de 8 días sin preguntas
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-logo">Despierta Tu Mente Lectora 🌸</span>
+    <p class="footer-disclaimer">
+      © 2024 Despierta Tu Mente Lectora. Todos los derechos reservados.<br><br>
+      <strong>Descargo de responsabilidad:</strong> Los resultados descritos en esta página representan experiencias individuales y pueden variar según el esfuerzo, compromiso y contexto personal de cada usuario. Este producto es un journal digital educativo diseñado para apoyar el hábito lector; no garantiza resultados específicos. La garantía de 8 días aplica a partir de la fecha de compra, sujeta a solicitud directa al email de soporte. Este sitio no está afiliado a Meta, Google ni ninguna otra plataforma. El pago es único, sin cargos recurrentes ni suscripciones ocultas.
+    </p>
+  </div>
+</footer>
+
+<script>
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+}, { threshold: 0.13 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+document.querySelectorAll('.faq-question').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  });
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+  });
+});
+
+const bar = document.querySelector('.sticky-urgency');
+let lastY = 0;
+window.addEventListener('scroll', () => {
+  const cur = window.scrollY;
+  bar.style.transition = 'transform 0.35s ease';
+  bar.style.transform = (cur > lastY && cur > 300) ? 'translateY(100%)' : 'translateY(0)';
+  lastY = cur;
+}, { passive: true });
+</script>
+</body>
+</html>
